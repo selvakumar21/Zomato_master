@@ -19,7 +19,7 @@ Router.get("/list/:_id",async (req,res) => {
         const {_id} = req.params;
         const menus = await MenuModel.findById(_id);
 
-        if(!menu) {
+        if(!menus) {
             res.status(404).json({error: "No menu present for this restaurant"});
         }
 
@@ -40,7 +40,7 @@ Router.get("/list/:_id",async (req,res) => {
  Router.get("/image/:_id",async (req,res) => {
     try{
         const {_id} = req.params;
-        const menuImages = await MenuModel.findOne(_id);
+        const menuImages = await ImageModel.findOne(_id);
 
         if(!menuImages) {
             res.status(404).json({error: "No menu images present for this restaurant"});

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const ImageSchema = new mongoose.Schema({
-    Images: [{location: {type: String, required: true}}] 
+    images: [{location: {type: String, required: true}}] 
 },
 {
     timestamps: true

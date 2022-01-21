@@ -60,16 +60,16 @@ Router.get("/", passport.authenticate("jwt"), async (req, res) => {
 
  Router.put("/update/:userid",async (req,res) => {
     try{
-        const {userid} = req.params;
+        const {userId} = req.params;
         const {userData} = req.body;
         const updateUserData = await UserModel.findByIdAndUpdate({
-            userid
+            userId
         },
         {
             $set: userData,
         },
         {
-            new: true
+            new: true,
         })
 
         return res.json({ user: updateUserData });

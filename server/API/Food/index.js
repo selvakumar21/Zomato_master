@@ -6,7 +6,8 @@ import { FoodModel } from "../../database/allModels";
 
 
 // Validation
-import { ValidateId, validateCategory } from "../../validation/common";
+import { validateId, validateCategory } from "../../validation/common";
+
 const Router = express.Router();
 
 /**
@@ -18,7 +19,7 @@ const Router = express.Router();
  */
 Router.get('/:id', async( req,res) => {
     try{
-        const {_id } = useParams();
+        const {_id } = req.params();
         const foods = await FoodModel.findById(_id);
         return res.json({ foods });
         
@@ -40,7 +41,7 @@ Router.get('/:id', async( req,res) => {
 
 Router.get("/r/:_id",async (req,res) => {
     try{
-        await ValidateId(req.params);
+        await validateId(req.params);
         const {_id} = req.params;
         const foods = await FoodModel.find({restaurant:_id});
 
@@ -67,7 +68,7 @@ Router.get("/c/:category", async(req,res)=>{
             category: {$regex: category, $options: "i"},
         });
 
-        if(!foods) return res.status(404).json({error: `No food matched with ${searchString}`});
+        if(!foods) return res.status(404).json({error: `No food matched with ${category}`});
 
         return res.json({foods});
     }catch(error){

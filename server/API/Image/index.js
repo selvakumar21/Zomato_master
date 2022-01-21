@@ -30,7 +30,7 @@ import {s3Upload} from '../../utils/s3';
         const file = req.file;
 
         //s3 bucket options
-            const bucketOption = {
+            const bucketOptions = {
                 Bucket: "zomato-master",
                 Key: file.originalname,
                 Body: file.buffer,
@@ -39,7 +39,7 @@ import {s3Upload} from '../../utils/s3';
             };
 
            
-        const uploadImage = await s3Upload(bucketOption);
+        const uploadImage = await s3Upload(bucketOptions);
 
         const saveImageToDatabase = await ImageModel.create({
             images: [{ location: uploadImage.Location }]

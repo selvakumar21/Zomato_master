@@ -7,6 +7,7 @@ import { UserModel } from "../../database/allModels";
 
 //Validation
 import { ValidateSignin, ValidateSignup } from "../../validation/auth";
+
 // Create a router
 const Router = express.Router();
 
@@ -40,7 +41,7 @@ const Router = express.Router();
 
 Router.post("/signin", async (req,res)=>{
     try{
-        // await ValidateSignin(req.body.credentials);
+        await ValidateSignin(req.body.credentials);
         const user = await UserModel.findByEmailAndPassword(req.body.credentials);
         const token = user.generateJWT();
         return res.status(200).json({token, status: "success"})

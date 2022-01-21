@@ -3,7 +3,7 @@ import {BsShieldLockFill} from 'react-icons/bs';
 
 
 //redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCart } from '../redux/reducer/cart/cart.action';
 
 
@@ -51,6 +51,7 @@ function CheckoutPage() {
             image:"https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" ,
             handler: (data) => {
                 alert("Payment Successfull")
+                console.log(data);
             },
             prefill: {
                 name: reduxStateUser.fullName,
@@ -61,7 +62,7 @@ function CheckoutPage() {
             },
         };
 
-        let razorPay = new window.Razorpay(options);
+        let razorPay = new Razorpay(options);
         razorPay.open();
     };
 

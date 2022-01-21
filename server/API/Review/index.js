@@ -57,7 +57,7 @@ Router.get("/:resid",async (req,res) => {
  Router.get("/delete/:_id", async (req,res) => { 
     try{
         const {_id} = req.params;
-        const deleteReview = await ReviewModel.findByIdAndDelete({_id})
+        await ReviewModel.findByIdAndDelete(_id)
         return res.json({review: "Successfully deleted the review"});
     }catch(error){
         return res.status(500).json({ error: error.message});

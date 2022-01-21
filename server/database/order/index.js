@@ -10,9 +10,11 @@ const OrderSchema = new mongoose.Schema({
       paymentDetails: {
           itemsTotal: {type: Number, required:true},
           promo: {type:Number, required:true},
-          tax: {type:Number, required:true}
+          tax: {type:Number, required:true},
+          razorpay_payment_id: { type: String, required: true },
       }
-  }]
+  }
+]
 },
 {
     timestamps:true //time and date of the order 

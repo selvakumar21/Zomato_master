@@ -46,13 +46,15 @@ import {NextArrow, PrevArrow} from "../CarouselArrow";
         ];
       
         const settings ={
+            className: 'center',
             arrows: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 5,
+            slidesToShow: 4,
             slidesToScroll: 1,
             nextArrow: <NextArrow/>,
             prevArrow: <PrevArrow/>,
+            centerPadding: "10px",
             responsive:[
                 {
                     breakpoint: 1024,
@@ -65,10 +67,10 @@ import {NextArrow, PrevArrow} from "../CarouselArrow";
 
     return (
         <>
-        <h1 className='text-3xl mb-4 font-semibold'>
+        <h1 className='text-xl mb-4 font-semibold'>
             Inspiration for your first order      
         </h1>   
-        <div className='lg:hidden flex gap-3 flex-wrap justify-between'>
+        <div className='lg:hidden flex gap-3 lg:gap-0 flex-wrap justify-between'>
             {categories.map((food) =>(
                 <DeliveryCategory {...food} />
             ))}
@@ -81,7 +83,7 @@ import {NextArrow, PrevArrow} from "../CarouselArrow";
             </Slider>
         </div>
         </>
-    )
+    );
 }
 
 export default DeliveryCarousel;

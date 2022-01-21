@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {IoMdArrowDropdown, IoMdArrowDropright, IoMdArrowDropup} from 'react-icons/io';
 import {IoCloseSharp} from 'react-icons/io5';
 import {useHistory} from 'react-router-dom';
@@ -12,10 +12,11 @@ function CartSM({toggle}) {
 
     const reduxState = useSelector((globalState) => globalState.cart.cart)
     const history = useHistory();
-    const continueToCheckout = () => history.pushState("/checkout/orders")
+    const continueToCheckout = () => history.push("/checkout/orders")
 
-    return<>
-        <div className='hidden md:flex items-center justify-between'>
+    return(
+    <>
+        <div className='md:hidden flex items-center justify-between'>
             <div className='flex flex-col items-start'>
                 <small className='flex items-center gap-1' onclick={toggle}>
                     {reduxState.length} Item <IoMdArrowDropup/>
@@ -28,22 +29,24 @@ function CartSM({toggle}) {
                 Continue <IoMdArrowDropright />
             </button>
         </div>
-    </>;
+    </>
+);
 }
 
 function CartLG({toggle}) {
 
     const reduxState = useSelector((globalState) => globalState.cart.cart)
     const history = useHistory();
-    const continueToCheckout = () => history.pushState("/checkout/orders")
-    return <>
-    <div className='md:hidden flex items-center justify-between'>
+    const continueToCheckout = () => history.push("/checkout/orders")
+    return (
+    <>
+    <div className='hidden md:flex items-center justify-between'>
         <div className='flex flex-col items-start'>
         <small className='flex items-center gap-1' onclick={toggle}>
                 {reduxState.length} Item <IoMdArrowDropup/>
             </small>
             <h4>
-            ${reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0)} <sub>(plus tax)</sub>
+            ${reduxState.reduce((acc, curVal) => acc + curVal.totalPrice, 0)}{" "} <sub>(plus tax)</sub>
             </h4>
         </div>
         <button onClick={continueToCheckout} className='flex items-center gap-1 bg-zomato-400 px-3 py-1 text-white rounded-lg'>
@@ -51,6 +54,7 @@ function CartLG({toggle}) {
             </button>
     </div>
     </>
+    );
 }
 
 function CartContainer() {
@@ -68,7 +72,7 @@ function CartContainer() {
        {reduxState.length && (
             <>
             {isOpen && (
-                <div className='fixed w-full overflow-y-scroll h-48 bg-white z-index-10 p-2 bottom-14 px-3'>
+                <div className='fixed w-full overflow-y-scroll h-48 bg-white z-10 p-2 bottom-14 px-3'>
                     <div className='flex items-center justify-between md:px-20'>
                         <h3 className='text-xl font-semibold'>
                             Your Orders
@@ -95,4 +99,4 @@ function CartContainer() {
     )
 }
 
-export default CartContainer
+export default CartContainer;

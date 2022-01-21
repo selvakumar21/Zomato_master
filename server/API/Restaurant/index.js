@@ -6,7 +6,7 @@ import { RestaurantModel } from "../../database/allModels";
 
 //Validation
 import { ValidateRestaurantCity, ValidateRestaurantSearchString } from "../../validation/restaurant";
-import { ValidateId } from "../../validation/common";
+import { validateId } from "../../validation/common";
 
 const Router = express.Router();
 
@@ -46,13 +46,13 @@ Router.get("/",async (req,res) => {
 //http://localhost:5000/restaurant/234tger4444323
 Router.get("/:_id", async(req,res) =>{
     try{
-        await ValidateId(req.params);
+        await validateId(req.params);
         const {_id} = req.params;
         const restaurant = await RestaurantModel.findById(_id);
 
         if(!restaurant) return res.status(400).json({error: "Restaurant not found"});
 
-        return res.status({ restaurant });
+        return res.json({ restaurant });
     }catch(error){
         return res.status(500).json({ error: error.message});
     }
