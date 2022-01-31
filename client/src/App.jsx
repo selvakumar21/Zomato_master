@@ -35,16 +35,16 @@ function App() {
 
   useEffect(() => {
     dispatch(getSelf());
-  },[])
+  },[localStorage])
 
   return (
     <>
       <Route path="/" exact>
       <Redirect to='/delivery' />
       </Route>
+      <Route path='/restaurant/:id' exact component={RedirectRes} />
       <HomeLayoutHoc exact component={HomePage} path='/:type' />
       <HomeLayoutHoc exact component={GoogleAuth} path="/google/:token" />      
-      <RestaurantLayoutHoc path='/restaurant/:id' exact component={RedirectRes} />
       <RestaurantLayoutHoc path='/restaurant/:id/overview' exact component={Overview} />
       <RestaurantLayoutHoc path='/restaurant/:id/order-online' exact component={OrderOnline} />
       <RestaurantLayoutHoc path='/restaurant/:id/review' exact component={Reviews} />

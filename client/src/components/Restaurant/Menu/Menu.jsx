@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
+
 //redux
 import {useSelector, useDispatch} from "react-redux";
 import {getImage} from "../../../redux/reducer/image/image.action";
@@ -27,7 +28,7 @@ useEffect(()=> {
 
     return (
         <div className='flex flex-wrap gap-3'>
-            <MenuCollection menuTitle='Menu' pages={menus.length} images={menus} />
+            <MenuCollection menuTitle='Menu' pages={menus.length} image={menus} />
         </div>
     )
 }

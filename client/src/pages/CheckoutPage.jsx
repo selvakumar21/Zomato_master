@@ -1,10 +1,10 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import {BsShieldLockFill} from 'react-icons/bs';
 
 
 //redux
-import { useDispatch, useSelector } from 'react-redux';
-import { getCart } from '../redux/reducer/cart/cart.action';
+import { useSelector } from 'react-redux';
+
 
 
 //razorpay
@@ -16,12 +16,6 @@ import FoodItem from "../components/Cart/FoodItem";
 import AddressList from '../components/Checkout/AddressList';
 
 function CheckoutPage() {
-
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-        dispatch(getCart());
-},[])
 
     const address = [
         {
@@ -62,7 +56,7 @@ function CheckoutPage() {
             },
         };
 
-        let razorPay = new Razorpay(options);
+        let razorPay = new window.Razorpay(options);
         razorPay.open();
     };
 
@@ -80,7 +74,7 @@ function CheckoutPage() {
                         <h4>Domino's Pizza</h4>
                         <small>GT World Mall, Magadi Road, NCR Noida</small>
                     </div>
-                    <div className='my-4 h-32 overflow-y-scroll px-4 flex flex-col gap-2 w-full md:w-3/5 items-center'>
+                    <div className='my-4 h-32 overflow-y-scroll px-4 flex flex-col gap-2 w-full md:w-3/5'>
                         {reduxStateCart?.map((food) => (
                             <FoodItem key={food._id} {...food} />
                         ))}
